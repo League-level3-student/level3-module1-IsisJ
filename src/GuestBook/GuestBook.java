@@ -27,28 +27,57 @@ public class GuestBook implements ActionListener{
 		panel.add(nameLabel);
 		panel.add(nameTextField);
 		panel.add(add);
+		add.addActionListener(this);
 		panel.add(vip);
+		vip.addActionListener(this);
 		panel.add(seeAll);
+		seeAll.addActionListener(this);
 		add.setText("Add");
 		vip.setText("VIP Add");
 		seeAll.setText("See All");
 		nameLabel.setText("Name:");
 		frame.setVisible(true);
 		frame.setSize(500, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	private String printGuestList(ArrayList<Guest> guestList) {
+		
+		for (int i = 0; i <= guestList.size()-1; i++) {
+			System.out.println(guestList.get(i)); 
+		}
+		return null;
+		
+	}
+	
+	private String styleGuestListPrinting(ArrayList<Guest> guestList) {
+			String listOfGuests = "";
+		for (int i = 0; i <= guestList.size()-1; i++) {
+			Guest guest = guestList.get(i); 
+			guest.getListing();
+			listOfGuests = listOfGuests +"\n "+ guest.getListing();
+			
+			
+		}
+		return listOfGuests;
+		
+	}
 	
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonPressed = (JButton) e.getSource();
 		
 		if(buttonPressed==seeAll) {
-			JOptionPane.showMessageDialog(null, guestList);
+			JOptionPane.showMessageDialog(null, styleGuestListPrinting(guestList));
 		}
 		else if(buttonPressed==add) {
 			guestList.add(new RegularGuest(nameTextField.getText()));
+			printGuestList(guestList);
+			nameTextField.setText(null);
 		}
 		else if(buttonPressed==vip){
 			guestList.add(new VIPGuest(nameTextField.getText()));
+			printGuestList(guestList);
+			nameTextField.setText(null);
 		}
 		
 	}

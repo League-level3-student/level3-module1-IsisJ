@@ -1,15 +1,19 @@
 package GuestBook;
 
 public class VIPGuest implements Guest {
-
+	
+	private String name;
+	
 	public VIPGuest (String name) {
-		name = "VIP:" + name;
+		this.name = "VIP: " + name;
 	}
 	
 	
 	public String getListing() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
-
+	
+	public String toString() {
+		return name;
+	}
 }
