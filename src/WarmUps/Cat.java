@@ -8,10 +8,7 @@ public class Cat {
 	}
 	
 	public boolean equals(Object o) {
-		if(((Cat)o).name.equals(this.name)) {
-		return true;
-		}
-		return false;
+		return (((Cat)o).name.equals(this.name));
 	}
 		
 }

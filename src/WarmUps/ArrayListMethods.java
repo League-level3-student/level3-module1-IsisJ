@@ -13,7 +13,7 @@ public class ArrayListMethods {
 		fruits.add("Strawberry");
 		fruits.add("Kiwi");
 		System.out.println(fruits.indexOf("Kiwi"));
-		System.out.println(fruits.indexOf("apple"));
+		System.out.println(fruits.indexOf("Apple"));
 		
 		ArrayList<Cat> catList = new ArrayList<>();
 		catList.add(new Cat("Kit"));
