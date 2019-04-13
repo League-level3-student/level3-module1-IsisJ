@@ -21,7 +21,6 @@ public class HireAndFire implements ActionListener {
 	private Stack<String> employees = new Stack<String>();
 	
 	private void createUI() {
-	
 		frame.add(panel);
 		panel.add(hireTextField);
 		panel.add(hireButton);
@@ -37,18 +36,15 @@ public class HireAndFire implements ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonPressed = (JButton)e.getSource();
 		if(buttonPressed == hireButton) {
-			
 			String theHiree = hireTextField.getText();
 			employees.push(theHiree);
 			hireTextField.setText(null);
 		}
 		else if(buttonPressed == fireButton){
-			
 			String theFireList = "";
 			int howManyToFire = Integer.parseInt(fireTextField.getText());
 			if(howManyToFire > employees.size()) {
@@ -62,11 +58,9 @@ public class HireAndFire implements ActionListener {
 			}
 			fireTextField.setText(null);
 		}
-		
 	}
 	
 	public static void main(String[] args) {
-	
 		HireAndFire manager = new HireAndFire();
 		manager.createUI();
 	}
