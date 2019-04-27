@@ -1,5 +1,6 @@
 package _06_Intro_To_Hash_Maps;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class _02_LogSearch implements ActionListener {
@@ -21,11 +23,14 @@ public class _02_LogSearch implements ActionListener {
 	private JButton addButton = new JButton();
 	private JButton searchButton = new JButton();
 	private JButton listAll = new JButton();
+	private JButton returnButton = new JButton("Return");
+	private JTextArea textArea = new JTextArea();
 	private HashMap<String, String> students = new HashMap<>();
 
 	private void createUI() {
 		frame.add(panel);
 		panel.add(addButton);
+		panel.setBackground(Color.pink);
 		addButton.addActionListener(this);
 		panel.add(searchButton);
 		searchButton.addActionListener(this);
@@ -33,16 +38,13 @@ public class _02_LogSearch implements ActionListener {
 		listAll.addActionListener(this);
 		addButton.setText("Add");
 		searchButton.setText("Search");
+		returnButton.addActionListener(this);
 		listAll.setText("Student Listing");
 		frame.setVisible(true);
-		frame.setSize(300, 100);
+		//frame.setSize(300, 100);
+		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
-	public static void main(String[] args) {
-		_02_LogSearch principle = new _02_LogSearch();
-		principle.createUI();
-	}	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton buttonPressed = (JButton) e.getSource();
@@ -60,44 +62,28 @@ public class _02_LogSearch implements ActionListener {
 			}	
 		}
 		else if (buttonPressed == listAll){
-			listingFrame.setSize(300, 100);
+			listingPanel.add(returnButton);
+			listingPanel.setBackground(Color.pink);
 			listingFrame.add(listingPanel);
 			for(String i : students.keySet()) {
-				JLabel iLabel = new JLabel("\nID: "+i+" Name: "+ students.get(i));
-				listingPanel.add(iLabel);
-				//JOptionPane.showMessageDialog(null, "ID: "+i+" Name: "+ students.get(i));
+				textArea.setText(textArea.getText() + "\nID: "+i+" Name: "+ students.get(i));
 			}
+			textArea.setBackground(Color.pink);
+			textArea.setEditable(false);
+			listingPanel.add(textArea);
 			listingFrame.setVisible(true);
+			listingFrame.pack();
+		}
+		else if(buttonPressed == returnButton) {
+			listingFrame.setVisible(false);
+			textArea.setText(null);
 		}
 	}
-  /* 
-	 * Crate a HashMap of Integers for the keys and Strings for the values.
-	 * Create a GUI with three buttons. 
-	 * Button 1: Add Entry
-	 * 				When this button is clicked, use an input dialog to ask the user to enter an ID number.
-	 * 				After an ID is entered, use another input dialog to ask the user to enter a name.
-	 * 				Add this information as a new entry to your HashMap.
-	 * 
-	 * Button 2: Search by ID
-	 * 				When this button is clicked, use an input dialog to ask the user to enter an ID number.
-	 * 				If that ID exists, display that name to the user.
-	 * 				Otherwise, tell the user that that entry does not exist.
-	 * 
-	 * Button 3: View List
-	 * 				When this button is clicked, display the entire list in a message dialog in the following format:
-	 * 				ID: 123  Name: Harry Howard
-	 * 				ID: 245  Name: Polly Powers
-	 * 				ID: 433  Name: Oliver Ortega
-	 * 				etc...
-	 * 
-	 * When this is complete, add a fourth button to your window.
-	 * Button 4: Remove Entry
-	 * 				When this button is clicked, prompt the user to enter an ID using an input dialog.
-	 * 				If this ID exists in the HashMap, remove it. Otherwise, notify the user that the ID
-	 * 				is not in the list. 
-	 *
-	 * */
-
-
 	
+	
+	public static void main(String[] args) {
+		_02_LogSearch principle = new _02_LogSearch();
+		principle.createUI();
+	}	
+
 }
