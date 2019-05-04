@@ -61,12 +61,14 @@ public class _02_LogSearch implements ActionListener {
 			}	
 		}
 		else if (buttonPressed == listAllButton){
+			String insertIntoTextArea = "";
 			listingPanel.add(returnButton);
 			listingPanel.setBackground(Color.pink);
 			listingFrame.add(listingPanel);
 			for(String i : students.keySet()) {
-				textArea.setText(textArea.getText() + "\nID: "+i+" Name: "+ students.get(i));
+				insertIntoTextArea += "\nID: "+i+" Name: "+ students.get(i); 
 			}
+			textArea.setText(insertIntoTextArea);
 			textArea.setBackground(Color.pink);
 			textArea.setEditable(false);
 			listingPanel.add(textArea);
@@ -81,8 +83,8 @@ public class _02_LogSearch implements ActionListener {
 	
 	
 	public static void main(String[] args) {
-		_02_LogSearch principle = new _02_LogSearch();
-		principle.createUI();
+		_02_LogSearch principal = new _02_LogSearch();
+		principal.createUI();
 	}	
 
 }
