@@ -22,7 +22,7 @@ public class _02_LogSearch implements ActionListener {
 	private JFrame frame = new JFrame();
 	private JButton addButton = new JButton();
 	private JButton searchButton = new JButton();
-	private JButton listAll = new JButton();
+	private JButton listAllButton = new JButton();
 	private JButton returnButton = new JButton("Return");
 	private JTextArea textArea = new JTextArea();
 	private HashMap<String, String> students = new HashMap<>();
@@ -34,14 +34,13 @@ public class _02_LogSearch implements ActionListener {
 		addButton.addActionListener(this);
 		panel.add(searchButton);
 		searchButton.addActionListener(this);
-		panel.add(listAll);
-		listAll.addActionListener(this);
+		panel.add(listAllButton);
+		listAllButton.addActionListener(this);
 		addButton.setText("Add");
 		searchButton.setText("Search");
 		returnButton.addActionListener(this);
-		listAll.setText("Student Listing");
+		listAllButton.setText("Student Listing");
 		frame.setVisible(true);
-		//frame.setSize(300, 100);
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -58,10 +57,10 @@ public class _02_LogSearch implements ActionListener {
 			if(!students.containsKey(searchedID)) {
 				JOptionPane.showMessageDialog(null,"There is no student under this ID number: "+searchedID);
 			}else {
-				JOptionPane.showMessageDialog(null, students.get(searchedID));
+				JOptionPane.showMessageDialog(null, students.get(searchedID)+ " is the student with ID number: "+searchedID);
 			}	
 		}
-		else if (buttonPressed == listAll){
+		else if (buttonPressed == listAllButton){
 			listingPanel.add(returnButton);
 			listingPanel.setBackground(Color.pink);
 			listingFrame.add(listingPanel);
